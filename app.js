@@ -34,7 +34,6 @@ const contrasena = document.querySelector('#contrasena');
 const contrasena2 = document.querySelector('#confirmarContrasena');
 
 function validarFormulario(e){
-  console.log(e.target.name);
   switch(e.target.name){
     case "nombre":
       validarCampo( expresiones.nombre, e.target, 'nombre');
@@ -47,6 +46,7 @@ function validarFormulario(e){
     break;
     case "contrasena":
       validarCampo( expresiones.contrasena, e.target, 'contrasena');
+      validarContrasena();
     break;
     case "confirmarContrasena":
       validarContrasena();
@@ -60,17 +60,23 @@ function validarFormulario(e){
 
 function validarCampo(expresiones, input, campo){
   if (expresiones.test(input.value)){
-    console.log('Valido');
+    document.getElementById(`${campo}`).classList.add('border-green-600');
+    document.getElementById(`${campo}`).classList.remove('border-red-600');
+    document.getElementById(`${campo}`).classList.add('border-2');
   } else {
-    console.log('Invalido');
+    document.getElementById(`${campo}`).classList.add('border-red-600');
+    document.getElementById(`${campo}`).classList.remove('border-green-600');
   }
 }
 
 function validarContrasena(){
   if (contrasena.value == contrasena2.value){
-
+    contrasena2.classList.add('border-green-600');
+    contrasena2.classList.remove('border-red-600');
+    contrasena2.classList.add('border-2');
   } else if (contrasena.value != contrasena2.value){
-    
+    contrasena2.classList.add('border-red-600');
+    contrasena2.classList.remove('border-green-600');
   }
 }
 
